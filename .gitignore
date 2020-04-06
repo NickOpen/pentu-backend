@@ -1,0 +1,4 @@
+build
+.settings
+src/main/resources
+gradle
