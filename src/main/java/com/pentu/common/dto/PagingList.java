@@ -1,27 +1,24 @@
-
 package com.pentu.common.dto;
 
 import java.util.List;
 
 public class PagingList<T> {
-
-    private long total;
+    private long size;
     private List<T> data;
 
-    public PagingList() {
-    }
+    public PagingList(){}
 
-    public PagingList(long totalNumbers, List<T> data) {
-        this.total = total;
+    public PagingList(long size, List<T> data){
+        this.size = size;
         this.data = data;
     }
 
-    public long getTotalNumbers() {
-        return total;
+    public long getSize() {
+        return size;
     }
 
-    public void setTotalNumbers(long totalNumbers) {
-        this.total = totalNumbers;
+    public void setSize(long size) {
+        this.size = size;
     }
 
     public List<T> getData() {

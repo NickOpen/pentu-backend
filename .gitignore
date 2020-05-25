@@ -1,4 +1,9 @@
 build
 .settings
 src/main/resources
+src/test
+.gradle
+.settings
+pentu
 gradle
+.idea

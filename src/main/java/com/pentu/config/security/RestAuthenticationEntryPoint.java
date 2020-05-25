@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * 匿名用户无权限时的异常
- */
 @Component
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

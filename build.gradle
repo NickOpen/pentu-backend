@@ -1,58 +1,44 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.8.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'java'
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
 }
 
-group = 'com.pentu'
-version = '0.0.1-SNAPSHOT'
+group = 'com'
+version = '0.1'
 sourceCompatibility = '1.8'
 
 repositories {
-    maven { url 'https://maven.aliyun.com/repository/public' }
-    mavenCentral()
-    jcenter {
-        url "http://jcenter.bintray.com/"
-    }
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
-}
-
-bootJar {
-    launchScript()
-    archiveFileName = 'pentu_backend.jar'
+	mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtime('mysql:mysql-connector-java:5.1.45')
+
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-mail'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.springframework:spring-context-support'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
-    runtime('mysql:mysql-connector-java:5.1.45')
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
-    implementation("org.quartz-scheduler:quartz:2.2.3") {
-        exclude module: 'c3p0'
-    }
-    implementation 'org.apache.commons:commons-collections4'
-    implementation 'org.apache.httpcomponents:httpclient'
-    implementation 'org.apache.httpcomponents:httpmime'
-    implementation ('org.apache.commons:commons-lang3')
-    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.62'
-    implementation 'com.aliyun.oss:aliyun-sdk-oss:3.6.0'
-    implementation 'com.aliyun:aliyun-java-sdk-dysmsapi:1.1.0'
-    implementation 'com.aliyun:aliyun-java-sdk-core:4.4.6'
-    //aes decode
-    implementation 'commons-codec:commons-codec'
-    //json web token
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
-    compile 'com.google.zxing:core:3.3.0'
-    //local jars
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile project(':utils')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+
+
+	compile 'io.jsonwebtoken:jjwt-api:0.11.1'
+	runtime 'io.jsonwebtoken:jjwt-impl:0.11.1',
+			// Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+			//'org.bouncycastle:bcprov-jdk15on:1.60',
+			'io.jsonwebtoken:jjwt-jackson:0.11.1' // or 'io.jsonwebtoken:jjwt-gson:0.11.1' for gson
+	implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.62'
+	compileOnly("org.springframework.boot:spring-boot-devtools")
+}
+
+test {
+	useJUnitPlatform()
 }

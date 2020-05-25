@@ -1,2 +1,0 @@
-# pentu-backent
-spring-boot
